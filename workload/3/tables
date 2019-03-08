@@ -25,8 +25,8 @@
                 <th>Company Name</th>
                 <th>Number of Items to Ship</th>
                 <th>Next Action</th>
+            </tr>
         </thead>
-        </tr>
         <tbody>
             <tr>
                 <td>Adam's Greenworks</td>
@@ -59,6 +59,12 @@
                 <td>Enter Order</td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <td>Total</td>
+                <td>28</td>
+            </tr>
+        </tfoot>
     </table>
 
 
