@@ -18,20 +18,27 @@
     </ul>
 
     <div class="search">Search the table</div>
+
     <table>
         <tr>
-            <th scope="col">Company Name </th>
-            <th scope="col">Number of Items to Ship </th>
-            <th scope="Col">Next Action</th>
+            <th>Company Name</th>
+            <th>Number of Items to Ship</th>
+            <th>Next Action</th>
         </tr>
         <tr>
-            <td colspan="3">Davie's Burgers</td>
-            <td>Send Invoice</td>
+            <td>Adam's Greenworks</td>
+            <td>14</td>
+            <td rowspan="3">Package Items</td>
+        </tr>
+        <tr>
+            <td>Davie's Burgers</td>
+            <td>2</td>
+
         </tr>
         <tr>
             <td>Baker's Bike Shop</td>
             <td>3</td>
-            <td>Send Invoice</td>
+
         </tr>
         <tr>
             <td>Miss Sally's Southern</td>
@@ -48,13 +55,7 @@
             <td>1</td>
             <td>Enter Order</td>
         </tr>
-        <tr>
-            <td>Adam's Greenworks</td>
-            <td>14</td>
-            <td>Package Items</td>
-        </tr>
     </table>
-
 
 
 </body>
