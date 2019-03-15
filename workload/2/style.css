@@ -54,6 +54,8 @@ p {
     font-family: 'Playfair Display', serif;
     font-size: 14px;
     font-style: italic;
+    color: black;
+    background-color: white;
     line-height: 14px;
     margin-left: 20px;
     padding: 10px;
