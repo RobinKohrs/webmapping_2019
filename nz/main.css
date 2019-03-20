@@ -1,7 +1,7 @@
 body {
     max-width: 1280px;
     margin-left: auto;
-    font-size: 4em;
+  
 }
 
 header {
@@ -10,4 +10,8 @@ header {
 
 header h2 {
     font-size: 4em;
+}
+
+header h3 {
+    font-size: 2em;
 }
