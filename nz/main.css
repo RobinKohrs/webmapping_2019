@@ -13,12 +13,31 @@ header {
 
 header h2 {
     font-size: 4em;
+    color: white;
+    margin: 0;
+    padding: 1em 0; /*Padding ist innerhalb vom Element, 1. Wert für oben/unten, 2.Wert für rechts/links*/
 }
 
 header h3 {
     font-size: 2em;
+    margin: 0; /* Margin vom obersten Element auf 0*, wenn das Element ganz oben an der Seite angrenzen soll*/
 }
 
 header h4 {
     font-size: 0,75em;
+}
+
+.author {
+    text-align: center;
+}
+
+.author img {
+    border-radius: 50%;
+    margin-top: -50px;
+
+}
+
+address a{
+    color: gray;
+    font-size: 20px;
 }
