@@ -1,8 +1,13 @@
 body {
     max-width: 1280px;
     margin-left: auto;
+    font-size: 4em;
 }
 
 header {
     text-align: center;
+}
+
+h2 {
+    font-size: 4em;
 }
