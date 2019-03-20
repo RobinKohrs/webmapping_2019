@@ -2,6 +2,7 @@ body {
     max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
+    font-family: open-sans;
   
 }
 
@@ -56,7 +57,12 @@ main figcaption {
     float: left;
     margin-left: -5em;  
     width: 3em;
+    color: red;
 
+}
+
+main figcaption fas fa-camera {
+    font-size: 20px;
 }
 main figure  img {
     width: 90%;
@@ -74,4 +80,17 @@ main figure  img {
 
 .next{
     float: right;
+}
+
+
+footer {
+    padding: 1em 3em 0;
+}
+
+@media only screen and (max-width: 900px) {     /* wenn der buldschirm schmaler als 900px ist, dann springt die Caption über das Bild*/
+    main figure figcaption {
+        float: none;
+        margin-left: 0;
+        width:  auto;
+    }
 }
