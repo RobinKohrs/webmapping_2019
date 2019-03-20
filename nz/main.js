@@ -17,6 +17,15 @@ let  karte = L.map("map");
 //aus Ausschnitt zoomen
 
 karte. setView(
-[breite, laenge]
+[breite, laenge],
 13
 );
+
+//openstreetmap hinzufügen
+L.tileLayer("http://{s}.tile.osm.org./{z}/{x}/{y}.png").addTo(karte);
+
+// Positionsmarker hinzufügen
+let pin = L.marker(
+    [breite, laenge]
+).addTo(karte);
+
