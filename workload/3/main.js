@@ -1,8 +1,6 @@
-public class Booleans {
-	public static void main(String[] args) { 
-    boolean intsCanHoldDecimals = false;
-
-    System.out.println(intsCanHoldDecimals);
-
+public class Char {
+	public static void main(String[] args) {   
+char expectedGrade = 'D';
+    System.out.println(expectedGrade);
 	}
 }
