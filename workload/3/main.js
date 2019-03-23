@@ -1,6 +1,6 @@
-public class Char {
+public class Song {
 	public static void main(String[] args) {   
-char expectedGrade = 'D';
-    System.out.println(expectedGrade);
+String openingLyrics= "Yesterday, all my troubles seemed so far away";
+    System.out.println(openingLyrics);
 	}
 }
