@@ -1,0 +1,103 @@
+body {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: open-sans;
+  
+}
+
+header {
+    text-align: center;
+    background-image: url("images/background.jpg");
+    background-position: 0 5%;
+    
+}
+
+header h2 {
+    font-size: 4em;
+    color: black;
+    margin: 0;
+    padding: 2em 0; /*Padding ist innerhalb vom Element, 1. Wert für oben/unten, 2.Wert für rechts/links*/
+}
+
+header h3 {
+    font-size: 2em;
+    margin: 0; /* Margin vom obersten Element auf 0*, wenn das Element ganz oben an der Seite angrenzen soll*/
+}
+
+header h4 {
+    font-size: 0,75em;
+    color: brown;
+}
+
+.author {
+    text-align: center;
+}
+
+.author img {
+    border-radius: 50%;
+    margin-top: -30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+address a{
+    color: gray;
+    font-size: 20px;
+}
+
+main {
+    width: 70%;
+    margin: auto;
+}
+
+main figure {
+    margin-left: 0; /*damti das Bild auf den gleichen Rad hat wie der Text im <main>-Element*/
+    /* strg k+c kommentieren, srtg k+c auskommentieren */
+}
+
+main figcaption { 
+    float: left;
+    margin-left: -9em;  
+    width: 9em;
+    color: red;
+
+}
+
+main figcaption fas fa-camera {
+    font-size: 20px;
+}
+main figure  img {
+    width: 100%;
+}
+
+#map {
+    height: 360px;
+    width: 90%;
+    border: 1px solid black;
+}
+
+.back {
+    float: left;
+}
+
+.fas fa-arrow-circle-down{
+    text-align: center;
+}
+
+.next{
+    float: right;
+}
+
+
+footer {
+    padding: 1em 3em 0;
+}
+
+@media only screen and (max-width: 900px) {     /* wenn der buldschirm schmaler als 900px ist, dann springt die Caption über das Bild*/
+    main figure figcaption {
+        float: none;
+        margin-left: 0;
+        width:  auto;
+    }
+}

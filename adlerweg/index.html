@@ -7,11 +7,12 @@
     <title>Die Sudetendeutsche Hütte</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <script src="main.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
-
+<script src="blicke.js"></script>
 <script defer src="main.js"></script>
 
 
@@ -20,7 +21,8 @@
 <body>
     <header>
         <h3>Österreichs Wanderwege</h3>
-        <h4>Station 4 - die Sudetendeutsche Hütte</h4>
+        <h4>Wanderwege Tirol</h4>
+        <h2>Station 4 - die Sudetendeutsche Hütte bis zum Kalser Tauernhaus</h2>
     </header>
 
     <div class="author">
@@ -37,18 +39,25 @@
 
         <main>
 
-            <h1>Willkommen auf der Sudetendeutschen Hütte.</h1> 
+            <h1>Zwischen der Sudetendeutschen Hütte und dem Kalser Tauernhaus</h1> 
            
 <br>
             <p>
                     Die Hütte ist ein Schutzhaus der 1. Kategorie und gehört der Sektion Sudeten des DAV. Bergsteiger, die auf der Hütte die Nacht verbringen möchten, finden Platz in 23 Betten und 32 Lagern  
                     Quelle: <a href="https://de.wikipedia.org/wiki/Sudetendeutsche_H%C3%BCtte">Wikiepdia</a>
 </p>
-                    <h2>Die Hütte</h2>
+                    <h2>Die Hütten</h2>
         <figure>
                 <figcaption><i class="fas fa-camera"></i> <em>Die Hütte mit dem Nussingkogel im Hintergrund</em></figcaption>
-            <img src="images/huette.jpg" width="1280" height="900">
+            <img src="images/huette.jpg" width="1280" height="960">
         </figure>
+<br>
+<i class="fas fa-arrow-circle-down"></i>
+                        
+<figure>
+        <figcaption><i class="fas fa-camera"></i> <em>Kalser Tauernhaus</em></figcaption>
+    <img src="images/tauernhaus.jpg" width="1280" height="960">
+</figure>
 
         <p>
                 Die Hütte wurde 1927–1929 auf Initiative der Sektion Saaz hin als Gemeinschaftswerk aller sudetendeutschen Sektionen des Alpenvereins erbaut. Die Eröffnung fand am 21. Juli 1929 statt. Von 1944 bis 1951 war die Hütte infolge der Nachkriegswirren geschlossen.
@@ -67,7 +76,11 @@ Im Rahmen des 70-Jahr-Jubiläums wurde 1999 der Anbau mit einem neuen Gastraum u
             <h3>Übersichtskarte</h3>
 
 
-            <div id="map" data-lat="47.257" data-lng="12.3434" data-title="Karte_huette"></div>
+            <div id="map" 
+                data-lat1="47.257" data-lng1="12.3434" data-title1="Sudetendeutsche Hütte" 
+                data-lat2="47.414" data-lng2="12.3726" data-title2="Kalser Tauernhaus">
+            </div>
+           
 
 
             <h3>Links</h3>
@@ -78,6 +91,16 @@ Im Rahmen des 70-Jahr-Jubiläums wurde 1999 der Anbau mit einem neuen Gastraum u
             <li><a href="https://www.tirol.at/reisefuehrer/sport/wandern/alpenvereinshuetten/a-sudetendeutsche-huette" >Tirols offizielle Seite</a></li>
         </ul>
         </main>
+
+        <footer>
+                <!-- TODO: ein nav-Element mit zwei Links auf die vorherige Etappe und die nächste Etappe mit den Klassen "back" und "next" sowie den Link-Texten "vorhergehender Stop" und "nächster Stop". Die Links verweisen auf die entsprechenden Etappen in der Form https://username.github.io/nz/index.html -->
+        
+                <nav>
+                     <a class="back"  href="https://meryp.github.io/nz/index.html"><i class="fas fa-arrow-left"></i>back</a>
+                       <a  class="next" href="https://veitba.github.io/nz/index.html">next <i class="fas fa-arrow-right"> </i></a>
+                        
+                </nav>
+            </footer>
 
 </body>
 
