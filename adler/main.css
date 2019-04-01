@@ -3,31 +3,36 @@ body {
     margin-left: auto;
     margin-right: auto;
     font-family: open-sans;
-  
+
 }
 
 header {
     text-align: center;
-    background-image: url("images/background.jpg");
-    background-position: 0 5%;
-    
+    background-image: url("images/sky.jpeg");
+    background-position: 0 35%;
+    padding: 0 2em;
+
 }
 
 header h2 {
-    font-size: 4em;
+    font-size: 3em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: black;
     margin: 0;
-    padding: 2em 0; /*Padding ist innerhalb vom Element, 1. Wert für oben/unten, 2.Wert für rechts/links*/
+    padding: 2em 0;
+    /*Padding ist innerhalb vom Element, 1. Wert für oben/unten, 2.Wert für rechts/links*/
 }
 
 header h3 {
     font-size: 2em;
-    margin: 0; /* Margin vom obersten Element auf 0*, wenn das Element ganz oben an der Seite angrenzen soll*/
+    margin: 0;
+    /* Margin vom obersten Element auf 0*, wenn das Element ganz oben an der Seite angrenzen soll*/
 }
 
 header h4 {
-    font-size: 0,75em;
-    color: brown;
+    font-size: 0, 75em;
+    color: red;
+
 }
 
 .author {
@@ -36,12 +41,14 @@ header h4 {
 
 .author img {
     border-radius: 50%;
+    border: 1em;
+    border-color: blueviolet;
     margin-top: -30px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
 
 }
 
-address a{
+address a {
     color: gray;
     font-size: 20px;
 }
@@ -51,23 +58,32 @@ main {
     margin: auto;
 }
 
+.cabins h3{
+    color: lightgray;
+    text-align: center;
+    text-decoration: underline;
+    border: 5px black;
+}
+
 main figure {
-    margin-left: 0; /*damti das Bild auf den gleichen Rad hat wie der Text im <main>-Element*/
+    margin-left: 0;
+    /*damti das Bild auf den gleichen Rad hat wie der Text im <main>-Element*/
     /* strg k+c kommentieren, srtg k+c auskommentieren */
 }
 
-main figcaption { 
+main figcaption {
     float: left;
-    margin-left: -9em;  
+    margin-left: -9em;
     width: 9em;
-    color: red;
+    color: grey;
 
 }
 
 main figcaption fas fa-camera {
     font-size: 20px;
 }
-main figure  img {
+
+main figure img {
     width: 100%;
 }
 
@@ -81,23 +97,26 @@ main figure  img {
     float: left;
 }
 
-.fas fa-arrow-circle-down{
+.fas fa-arrow-circle-down {
     text-align: center;
 }
 
-.next{
+.next {
     float: right;
 }
 
 
 footer {
+    margin: 3em;
     padding: 1em 3em 0;
 }
 
-@media only screen and (max-width: 900px) {     /* wenn der buldschirm schmaler als 900px ist, dann springt die Caption über das Bild*/
+@media only screen and (max-width: 900px) {
+
+    /* wenn der buldschirm schmaler als 900px ist, dann springt die Caption über das Bild*/
     main figure figcaption {
         float: none;
         margin-left: 0;
-        width:  auto;
+        width: auto;
     }
 }

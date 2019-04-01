@@ -53,7 +53,7 @@ for (let blick of ADLERBLICKE) { //Marker erzeugen und dann popup dranhängen
     );
 }
 
-console.log(blickeGruppe.getBounds())
+// console.log(blickeGruppe.getBounds())
 //Auf Adlerblicke zoomen
 karte.fitBounds (blickeGruppe.getBounds());
 
