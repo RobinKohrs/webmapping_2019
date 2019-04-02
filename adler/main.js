@@ -27,20 +27,21 @@ let karte = L.map("map");
 //openstreetmap hinzufügen
 L.tileLayer("http://{s}.tile.osm.org./{z}/{x}/{y}.png").addTo(karte);
 
+let markerGruppe = L.featureGroup().addTo(karte)
 // Positionsmarker hinzufügen
 let pin1 = L.marker(
     [breite1, laenge1]
-).addTo(karte);
+).addTo(markerGruppe);
 
 let pin2 = L.marker(
     [breite2, laenge2]
-).addTo(karte);
+).addTo(markerGruppe);
 
 //Popup zum Pin hängen
 pin1.bindPopup(titel1).openPopup();
 pin2.bindPopup(titel2).openPopup();
 
-let markerGruppe = L.featureGroup().addTo(karte)  //Gruppe erzeugen!!
+  //Gruppe erzeugen!!
 
 for (let blick of ADLERBLICKE) { //Marker erzeugen und dann popup dranhängen
     let blickpin = L.marker( //marker definieren
