@@ -16,7 +16,7 @@ header {
 
 header h2 {
     font-size: 3em;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Indie Flower', cursive;
     color: black;
     margin: 0;
     padding: 2em 0;
@@ -26,6 +26,7 @@ header h2 {
 header h3 {
     font-size: 2em;
     margin: 0;
+    text-decoration: underline;
     /* Margin vom obersten Element auf 0*, wenn das Element ganz oben an der Seite angrenzen soll*/
 }
 
@@ -41,8 +42,7 @@ header h4 {
 
 .author img {
     border-radius: 50%;
-    border: 1em;
-    border-color: blueviolet;
+    border: 5px solid white;
     margin-top: -30px;
     font-family: 'Courier New', Courier, monospace;
 
@@ -62,7 +62,13 @@ main {
     color: lightgray;
     text-align: center;
     text-decoration: underline;
-    border: 5px black;
+    
+}
+
+.fas fa-arrows-alt-v {
+    color: red;
+    float: left;
+    margin-left: -5em;
 }
 
 main figure {
@@ -76,6 +82,7 @@ main figcaption {
     margin-left: -9em;
     width: 9em;
     color: grey;
+    padding: 1em;
 
 }
 
@@ -99,6 +106,7 @@ main figure img {
 
 .fas fa-arrow-circle-down {
     text-align: center;
+    color: red;
 }
 
 .next {
