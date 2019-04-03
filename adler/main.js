@@ -132,3 +132,5 @@ for (let blick of ADLERBLICKE) { //Marker erzeugen und dann popup dranhängen
 // console.log(blickeGruppe.getBounds())
 //Auf Adlerblicke zoomen
 karte.fitBounds(markerGruppe.getBounds());
+karte.addControl(new L.Control.Fullscreen());
+var hash = new L.Hash(karte);
