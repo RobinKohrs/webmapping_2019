@@ -134,3 +134,8 @@ for (let blick of ADLERBLICKE) { //Marker erzeugen und dann popup dranhängen
 karte.fitBounds(markerGruppe.getBounds());
 karte.addControl(new L.Control.Fullscreen());
 var hash = new L.Hash(karte);
+var coords = new L.Control.Coordinates() //PlugIn initialisiert
+coords.addTo(karte); //plugin an die Karte hängen
+karte.on('click', function(e) {
+	coords.setCoordinates(e);
+});
