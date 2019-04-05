@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,15 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
 
     <script defer src="main.js"></script>
 
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css'
+        rel='stylesheet' />
+
+    <link href="plugins/Control.Coordinates.css" rel="stylesheet">
+    <script src="plugins/Control.Coordinates.js"></script>
+
 </head>
-    
+
 <body>
     <header>
         <h3>Aotearoa</h3>
@@ -25,37 +34,38 @@
     </header>
 
     <!-- TODO: ein div-Element mit der Klasse "author" -->
-        <!-- TODO: ein User-(Symbol)Bild mit 100x100 Pixel im Format JPG mit dem Namen user.jpg in einem Unterordner images/ -->
-        <!-- TODO: ein address-Element mit zwei Links -->
-            <!-- TODO: ein Link auf die eigene E-Mailadresse mit dem eigenen Namen-->
-            <!-- TODO: ein Link auf den eigenen github.com Account -->
+    <!-- TODO: ein User-(Symbol)Bild mit 100x100 Pixel im Format JPG mit dem Namen user.jpg in einem Unterordner images/ -->
+    <!-- TODO: ein address-Element mit zwei Links -->
+    <!-- TODO: ein Link auf die eigene E-Mailadresse mit dem eigenen Namen-->
+    <!-- TODO: ein Link auf den eigenen github.com Account -->
 
-      <div class="author">
-          <img src="images/user.jpeg" width="100" height="100">
-          <br><br>
-              <address>
-                  
-         Written by <a href="mailto:robin.kohrs@gmx.de">Robin Kohrs</a> 
-              Git-Hub: <a href="https://github.com/RobinKohrs"> RobinKohrs</a>
-           
-          </address>
+    <div class="author">
+        <img src="images/user.jpeg" width="100" height="100">
+        <br><br>
+        <address>
+
+            Written by <a href="mailto:robin.kohrs@gmx.de">Robin Kohrs</a>
+            Git-Hub: <a href="https://github.com/RobinKohrs"> RobinKohrs</a>
+
+        </address>
         <br>
 
-    
-      </div>      
+
+    </div>
 
     <hr />
 
     <main>
         <!-- TODO: eine Überschrift 1 mit dem Titel der Etappe und einem kurzen "Teaser" -->
         <!-- TODO: ein Absatz mit einem Einführungstext zur Etappe aus der Wikipedia plus einem Link auf die Wikipedia-Seite in der Form "(Quelle: Wikipedia)", das Wort "Wikipedia" als Link -->
-<h1>Moeraki Boulders, New Zealands's ancient Treasures</h1>
-<p>
-  
-            Die Moeraki Boulders sind eine Anzahl ungewöhnlich großer kugelförmiger Konkretionen an der Koekohe Beach an der Küste von Otago auf der Südinsel Neuseelands zwischen Moeraki und Hampden.
- <br>
- Quelle: <a href="https://en.wikipedia.org/wiki/Moeraki_Boulders">Wikiepdia</a>
- </p>
+        <h1>Moeraki Boulders, New Zealands's ancient Treasures</h1>
+        <p>
+
+            Die Moeraki Boulders sind eine Anzahl ungewöhnlich großer kugelförmiger Konkretionen an der Koekohe Beach an
+            der Küste von Otago auf der Südinsel Neuseelands zwischen Moeraki und Hampden.
+            <br>
+            Quelle: <a href="https://en.wikipedia.org/wiki/Moeraki_Boulders">Wikiepdia</a>
+        </p>
 
 
         <!-- TODO: eine Überschrift 2 einer Sehenswürdigkeit der Etappe-->
@@ -63,16 +73,24 @@
         <!-- TODO: ein Absatz mit der Beschreibung der Sehenswürdigkeit aus der Wikipedia plus einem Link auf die Wikipedia-Seite in der Form "(Quelle: Wikipedia)", das Wort "Wikipedia" als Link -->
         <h2>Koutu Boulders</h2>
         <figure>
-                <figcaption><i class="fas fa-camera"></i> <em>View from the west</em></figcaption>
+            <figcaption><i class="fas fa-camera"></i> <em>View from the west</em></figcaption>
             <img src="images/attraction.jpg" width="600" height="400">
         </figure>
         <p>
-            Die Moeraki Boulders entstanden durch Zementation durch Calcit aus Porenwasser aus paläozänen Sedimenten, aus denen sie später durch Erosion freigelegt wurden. Die Kugelform zeigt, dass die Kugeln durch Diffusion des Calciums und nicht durch eine fließende Flüssigkeit erzeugt wurden. Untersuchungen zum Magnesium- und Eisengehalt und der Isotopenverteilung von Sauerstoff und Kohlenstoff im Calcit-Zement und dem Spat zeigten, dass sich der Körper der Kugeln in Meeresschlamm nahe der Oberfläche des paläozänen Meeresgrundes bildete. Die Isotopenverteilung wurde auch für die Theorie herangezogen, dass die Reduktion von Sulfat durch Bakterien in salzhaltigen Porenwässern den Niederschlag von Calcit verursachte, der die Bildung der Boulders zur Folge hatte. Die Entstehungszeit der großen 2-Meter-Boulders wird auf eine Zeit von 4 bis 5,5 Millionen Jahre geschätzt, während denen sich 10 bis 50 Meter Schlamm über ihnen sammelte <br><br>
-         Quelle: <a href="https://en.wikipedia.org/wiki/Moeraki_Boulders">Wikiepdia</a>
-        
+            Die Moeraki Boulders entstanden durch Zementation durch Calcit aus Porenwasser aus paläozänen Sedimenten,
+            aus denen sie später durch Erosion freigelegt wurden. Die Kugelform zeigt, dass die Kugeln durch Diffusion
+            des Calciums und nicht durch eine fließende Flüssigkeit erzeugt wurden. Untersuchungen zum Magnesium- und
+            Eisengehalt und der Isotopenverteilung von Sauerstoff und Kohlenstoff im Calcit-Zement und dem Spat zeigten,
+            dass sich der Körper der Kugeln in Meeresschlamm nahe der Oberfläche des paläozänen Meeresgrundes bildete.
+            Die Isotopenverteilung wurde auch für die Theorie herangezogen, dass die Reduktion von Sulfat durch
+            Bakterien in salzhaltigen Porenwässern den Niederschlag von Calcit verursachte, der die Bildung der Boulders
+            zur Folge hatte. Die Entstehungszeit der großen 2-Meter-Boulders wird auf eine Zeit von 4 bis 5,5 Millionen
+            Jahre geschätzt, während denen sich 10 bis 50 Meter Schlamm über ihnen sammelte <br><br>
+            Quelle: <a href="https://en.wikipedia.org/wiki/Moeraki_Boulders">Wikiepdia</a>
+
         </p>
 
-       
+
         <h3>Übersichtskarte</h3>
         <!-- TODO: ein div-Element mit dem id-Attribut "map" und drei weiteren Attributen data-lat, data-lng und data-title. Die Koordinaten von data-lat und data-lng sind als Dezimalgrad mit einem "." als Komma zu schreiben und aus der Wikipedia zu entnehmen. Das data-title Attribut enthält einen Titel für die oben verwendete Sehenswürdigkeit
         -->
@@ -80,10 +98,13 @@
 
         <h3>Links</h3>
         <ul>
-            <li><a href="https://www.backpackerguide.nz/beginners-guide-to-getting-to-new-zealand/">How to get to NZ</a></li>
-            <li><a href="https://www.tripadvisor.co.nz/RestaurantsNear-g255677-d639785-Moeraki_Boulders-Oamaru_Otago_Region_South_Island.html">Where to eat?</a></li>
+            <li><a href="https://www.backpackerguide.nz/beginners-guide-to-getting-to-new-zealand/">How to get to NZ</a>
+            </li>
+            <li><a
+                    href="https://www.tripadvisor.co.nz/RestaurantsNear-g255677-d639785-Moeraki_Boulders-Oamaru_Otago_Region_South_Island.html">Where
+                    to eat?</a></li>
             <li><a href="https://www.immigration.govt.nz/new-zealand-visas">Do I need a visa?</a></li>
-            <li><a href="https://www.moerakiboulders.com/accommodation/" >Where to stay</a></li>
+            <li><a href="https://www.moerakiboulders.com/accommodation/">Where to stay</a></li>
         </ul>
         <!-- TODO: 4 Links zu Seiten im Netz die zur Etappe/Sehenswürdigkeit passen als ungeordnete Liste -->
 
@@ -95,9 +116,9 @@
         <!-- TODO: ein nav-Element mit zwei Links auf die vorherige Etappe und die nächste Etappe mit den Klassen "back" und "next" sowie den Link-Texten "vorhergehender Stop" und "nächster Stop". Die Links verweisen auf die entsprechenden Etappen in der Form https://username.github.io/nz/index.html -->
 
         <nav>
-             <a class="back"  href="https://meryp.github.io/nz/index.html"><i class="fas fa-arrow-left"></i>back</a>
-               <a  class="next" href="https://veitba.github.io/nz/index.html">next <i class="fas fa-arrow-right"> </i></a>
-                
+            <a class="back" href="https://meryp.github.io/nz/index.html"><i class="fas fa-arrow-left"></i>back</a>
+            <a class="next" href="https://veitba.github.io/nz/index.html">next <i class="fas fa-arrow-right"> </i></a>
+
         </nav>
     </footer>
 
