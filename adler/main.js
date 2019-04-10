@@ -56,7 +56,6 @@ bmapoberflaeche : L.tileLayer("https://{s}.wien.gv.at/basemap/bmapoberflaeche/gr
   subdomains: ["maps", "maps1", "maps2", "maps3", "maps4"],
   attribution : 'Datenquelle: <a href="https://basemap.at“>basemap.at</a>'
 }),
-
 stamen_toner : L.tileLayer("https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png" , {
   subdomains : ["a","b","c"],
   attribution : 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
@@ -123,7 +122,7 @@ pin2.bindPopup(titel2).openPopup();
 
 //Gruppe erzeugen!!
 
-for (let blick of ADLERBLICKE) { //Marker erzeugen und dann popup dranhängen
+for (let blick of ADLERBLICKE) { //Marker erzeugen und dann popup dranhängen //blick könnte auch i sein
   let blickpin = L.marker( //marker definieren
     [blick.lat, blick.lng]
   ).addTo(markerGruppe); // Marker in die Gruppe packen!!
