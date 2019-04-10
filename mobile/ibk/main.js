@@ -35,21 +35,29 @@ L.control.layers({
     "Basemap Gelände" : kartenlayer.bmapgelaende,
 }).addTo(karte);
 
+let positionsMarker = L.marker([47, 11]).addTo(karte)
 
 karte.locate({
     setView : true,
-    maxZoom : 16,
+    maxZoom : 10,
+    watch : true,
 })
 
 
 karte.on("locationfound", function(event){
     console.log(event);
-    L.marker([
-        event.latitude, event.longitude
-    ]).addTo(karte);
+    //L.marker([ event.latitude, event.longitude]).addTo(karte);
+    positionsMarker.setLatLng(event.latlng);
+}),
 
     L.circle([
         event.latitude, event.longitude
-    ], 
+    ], {
+        radius : event.accuracy/2
+    }
     ).addTo(karte);
-});
+
+
+karte.on("locationerror", function (event){
+    alert ("leider keinen Standort gefunden")
+})
