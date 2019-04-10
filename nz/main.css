@@ -22,6 +22,9 @@ header h2 {
 header h3 {
     font-size: 2em;
     margin: 0; /* Margin vom obersten Element auf 0*, wenn das Element ganz oben an der Seite angrenzen soll*/
+    color: darkorange;
+    padding: 5px;
+    border: 2px solid black;
 }
 
 header h4 {
@@ -35,6 +38,7 @@ header h4 {
 .author img {
     border-radius: 50%;
     margin-top: -50px;
+    border: 5px solid white;
 
 }
 
