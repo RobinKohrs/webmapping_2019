@@ -1,9 +1,6 @@
 let karte = L.map("map");
 
-//karte.setView(
-  //  [47, 11],
-   // 13
-//);
+
 
 const kartenlayer = {
     osm: L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
@@ -35,29 +32,36 @@ L.control.layers({
     "Basemap Gelände" : kartenlayer.bmapgelaende,
 }).addTo(karte);
 
-let positionsMarker = L.marker([47, 11]).addTo(karte)
-
-karte.locate({
-    setView : true,
-    maxZoom : 10,
-    watch : true,
-})
+karte.setView(
+    [47.267222 , 11.392778],
+    15
+    );
 
 
-karte.on("locationfound", function(event){
-    console.log(event);
-    //L.marker([ event.latitude, event.longitude]).addTo(karte);
-    positionsMarker.setLatLng(event.latlng);
-}),
+//console.log(SPORTSTAETTEN);
 
-    L.circle([
-        event.latitude, event.longitude
-    ], {
-        radius : event.accuracy/2
+let markerGruppe = L.featureGroup().addTo(karte)
+
+for (let staette of SPORTSTAETTEN) { //For Schleife für Objekt
+//console.log(staette);
+// Piktogramm definieren
+let piktogramm = L.icon ({
+    iconUrl : `icons/icon_${staette.icon}_schwarz_auf_weiss_250px.png`
+});
+
+let pin1 = L.marker( //marker definieren
+    [staette.lat, staette.lng], {
+        icon : piktogramm
     }
-    ).addTo(karte);
+    ).addTo(markerGruppe);// Marker in die Gruppe packen!!
+
+    //Popup hinzufügen
+    pin1.bindPopup(
+      `<h1>Name ${staette.name}</h1>
+                          <p>Adresse: ${staette.adresse}</p>
+                          <em>Typ: ${staette.typ}</em>`
+    );
+
+  }
 
 
-karte.on("locationerror", function (event){
-    alert ("leider keinen Standort gefunden")
-})
