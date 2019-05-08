@@ -37,3 +37,4 @@ karte.setView(
     15
     );
 
+console.log(AWS);
