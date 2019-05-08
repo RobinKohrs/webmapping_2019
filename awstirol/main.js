@@ -22,7 +22,7 @@ const kartenlayer = {
 }
 
 karte.addLayer(
-    kartenlayer.osm
+    kartenlayer.bmapgelaende
 )
 
 L.control.layers({
@@ -37,4 +37,14 @@ karte.setView(
     15
     );
 
-console.log(AWS);
+//console.log(AWS);
+const awsTIROL = L.featureGroup();
+L.geoJson(AWS)
+.bindPopup (function(layer) {
+    console.log("Layer: ", layer);
+    return `Temperatur: ${layer.feature.properties.LT} °C <br>
+    Datum: ${layer.feature.properties.date}`;
+})
+.addTo(awsTIROL); // erzeugt 168 Marker
+awsTIROL.addTo(karte); //Ich hänge sie nicht direkt an die Karte, sondern pack sie in die Featuregroup
+karte.fitBounds(awsTIROL.getBounds());
