@@ -71,7 +71,7 @@ async function loadStations() {
         pointToLayer: function (feature, latlng) { //für jeden Punkt
             if (feature.properties.WR) {
                 let color = 'black';
-                if (feature.properties.WG > 20) { // Pfeil ist normalerweise black, wenn > 20 wird sie rot
+                if (feature.properties.WR > 20) { // Pfeil ist normalerweise black, wenn > 20 wird sie rot
                     color = 'red';
                 }
                 return L.marker(latlng, {
@@ -117,6 +117,21 @@ async function loadStations() {
     layerControl.addOverlay(temperaturLayer, "temperatur")
     temperaturLayer.addTo(karte) //wird direkt angezeift
 };
+
+
+
+// relative Feuchte
+const relfeuchte = L.featureGroup()
+const = farbPaletterh [
+]
+
+L.geoJson(stations, {
+    pointToLayer: function (feature, latlng) {
+    if (feature.properties.RH) {
+        let color = "#EEE";
+        for (let i=0, i<farbPaletterh, i++) {
+    }
+})
 
 
 loadStations();
