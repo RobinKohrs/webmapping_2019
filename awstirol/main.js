@@ -123,22 +123,41 @@ async function loadStations() {
         // relative Feuchte
         const relfeuchte = L.featureGroup()
         farbPalette = [
-            [30, "#EEE"],
-            [40, "#DDD"], // 1. SChwelle 2. Farbe
+            [30, "#EEE"], // 1. SChwelle 2. Farbe
+            [40, "#DDD"],
+            [50, "#C6C9CE"],
+            [60, "#BBB"],
+            [70, "#AAC"],
+            [80, "#9998DD"],
+            [90, "#8788EE"],
+            [99, "#7677E1"],
 
         ]
 
         L.geoJson(stations, {
-                pointToLayer: function (feature, latlng) {
-                    if (feature.properties.RH) {
-                        let color = farbPalette[farbPalette.length - 1][1];
-                        for (let i = 0; i < farbPalette; i++) {
+                    pointToLayer: function (feature, latlng) {
+                            if (feature.properties.RH) {
+                                let color = farbPalette[farbPalette.length - 1][1]; //length = 8
+                                for (let i = 0; i < farbPalette; i++) {
+                                    if (feature.properties.RH < farbPalette[i][0]) {
+                                        color = farbPalette[i][1];
+                                        break;
+                                    }
 
+                                }
+                                return L.marker(latlng, {
+                                    icon: L.divIcon({
+                                        html: `<div class="luftfeuchteLabel" style="background-color:${color}">${feature.properties.RH}</div>`
+                                    })
+                                });
+
+                            }
                         }
-                    }
-                }
+                    }).addTo(relfeuchte); //hängt das ganze an meinen templayer
+                    layerControl.addOverlay(relfeuchte, "relative Luffeuchte")
+                    relfeuchte.addTo(karte) //wird direkt angezeift
+        
 
-        })
 
 
-        loadStations();
+                            loadStations();
