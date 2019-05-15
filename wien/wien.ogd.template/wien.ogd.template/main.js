@@ -71,28 +71,52 @@ karte.setView([48.208333, 16.373056], 12); //Zoomfakttor 12
 
 
 const url = ' https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SPAZIERPUNKTOGD &srsName=EPSG:4326&outputFormat=json';
-async function loadSights(url) { //damit man es laden kann muss man eine Funktion definieren
-    const response = await fetch(url); //innerhalb der asynchronen funktion abwarten bis das fetch fertig ist
-    const sightsData = await response.json(); //in json umwandeln
-    L.geoJson(sightsData, {
-        pointToLayer: function (feature, latlng) {
-            return L.marker(latlng, {
-                    icon: L.icon({
-                        iconUrl: 'http://www.data.wien.gv.at/icons/sehenswuerdigogd.png',
-                        iconSize: [36, 36]
-                    })
 
-                })
 
-                .bindPopup(
-                    `<h3>${feature.properties.NAME}</h3>  
-                    <p>${feature.properties.BEMERKUNG}</p>`
-                        
-                   
 
-                );
-        }
-    }).addTo(karte);
+function makeMarker(feature, latlng) { //Funktionsname 
+    const fotoicon = L.icon({ //icon erzeugen --> wo liegt das Bild und wie groß?
+        iconUrl: 'http://www.data.wien.gv.at/icons/sehenswuerdigogd.png',
+        iconSize: [36, 36]
+    });
+
+    const sightmarker = L.marker(latlng, { //Marker erzeugen und Position
+        icon: fotoicon //dann gebe ich dem Marker das Icon, sonst wäre er blau
+    });
+
+    sightmarker.bindPopup(`
+ <h3>${feature.properties.NAME}</h3>  
+ <p>${feature.properties.BEMERKUNG}</p>
+ `);
+
+    return sightmarker; //funktion gibt Marker zurück
 }
 
-loadSights(url);
+
+    async function loadSights(url) { //damit man es laden kann muss man eine Funktion definieren
+        const sehenswuerdigkeitenclusterGruppe = L.markerClusterGroup(); //erzeugen von featureGroup -- markerClusterGroup ist so definiert und kann nicht geändert werden
+        const response = await fetch(url); //innerhalb der asynchronen funktion abwarten bis das fetch fertig ist
+        const sightsData = await response.json(); //in json umwandeln
+        const geoJson = L.geoJson(sightsData, { //Wert der GeoJson Varibale wird in einer KOnstante gespeichert jetzt
+            pointToLayer: makeMarker //wie wird der Punkt in einen Layer umgewandelt? //Funktionsname
+        });
+        sehenswuerdigkeitenclusterGruppe.addLayer(geoJson); //fühe GeoJson zu ClusterGruppe
+        karte.addLayer(sehenswuerdigkeitenclusterGruppe);
+        layerControl.addOverlay(sehenswuerdigkeitenclusterGruppe, "Sehenswürdigkeiten")
+
+
+        const suchFeld = new L.Control.Search({
+            layer: sehenswuerdigkeitenclusterGruppe,
+            propertyName: "NAME",
+            zoom: 17,
+        });
+        karte.addControl(suchFeld);
+    }
+
+    loadSights(url);
+
+const scale = L.control.scale({
+    imperial: true,
+    metric: true
+});
+karte.addControl(scale);
