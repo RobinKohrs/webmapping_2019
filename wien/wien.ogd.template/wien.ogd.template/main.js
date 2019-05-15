@@ -1,6 +1,6 @@
 /* Wien OGD Beispiele */
 
-let karte = L.map("map");
+let karte = L.map("map"); //leaflet bibliothek wird aufgerufen mit der Variable = Karte und dem div = map
 
 const kartenLayer = {
     osm: L.tileLayer("https://{s}.tile.osm.org/{z}/{x}/{y}.png", {
@@ -49,7 +49,7 @@ const kartenLayer = {
     })
 };
 
-const layerControl = L.control.layers({
+const layerControl = L.control.layers({ //kleines Zeichen rechts oben in der Karte
     "Geoland Basemap": kartenLayer.geolandbasemap,
     "Geoland Basemap Grau": kartenLayer.bmapgrau,
     "Geoland Basemap Overlay": kartenLayer.bmapoverlay,
@@ -67,6 +67,32 @@ kartenLayer.bmapgrau.addTo(karte);
 
 karte.addControl(new L.Control.Fullscreen());
 
-karte.setView([48.208333, 16.373056], 12);
+karte.setView([48.208333, 16.373056], 12); //Zoomfakttor 12
 
-// die Implementierung der Karte startet hier
+
+const url = ' https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SPAZIERPUNKTOGD &srsName=EPSG:4326&outputFormat=json';
+async function loadSights(url) { //damit man es laden kann muss man eine Funktion definieren
+    const response = await fetch(url); //innerhalb der asynchronen funktion abwarten bis das fetch fertig ist
+    const sightsData = await response.json(); //in json umwandeln
+    L.geoJson(sightsData, {
+        pointToLayer: function (feature, latlng) {
+            return L.marker(latlng, {
+                    icon: L.icon({
+                        iconUrl: 'http://www.data.wien.gv.at/icons/sehenswuerdigogd.png',
+                        iconSize: [36, 36]
+                    })
+
+                })
+
+                .bindPopup(
+                    `<h3>${feature.properties.NAME}</h3>  
+                    <p>${feature.properties.BEMERKUNG}</p>`
+                        
+                   
+
+                );
+        }
+    }).addTo(karte);
+}
+
+loadSights(url);
