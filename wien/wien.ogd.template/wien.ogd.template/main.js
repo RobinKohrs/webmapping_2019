@@ -95,28 +95,28 @@ function makeMarker(feature, latlng) { //Funktionsname
 }
 
 
-    async function loadSights(url) { //damit man es laden kann muss man eine Funktion definieren
-        const sehenswuerdigkeitenclusterGruppe = L.markerClusterGroup(); //erzeugen von featureGroup -- markerClusterGroup ist so definiert und kann nicht geändert werden
-        const response = await fetch(url); //innerhalb der asynchronen funktion abwarten bis das fetch fertig ist
-        const sightsData = await response.json(); //in json umwandeln
-        const geoJson = L.geoJson(sightsData, { //Wert der GeoJson Varibale wird in einer KOnstante gespeichert jetzt
-            pointToLayer: makeMarker //wie wird der Punkt in einen Layer umgewandelt? //Funktionsname
-        });
-        sehenswuerdigkeitenclusterGruppe.addLayer(geoJson); //fühe GeoJson zu ClusterGruppe
-        karte.addLayer(sehenswuerdigkeitenclusterGruppe);
-        layerControl.addOverlay(sehenswuerdigkeitenclusterGruppe, "Sehenswürdigkeiten")
+async function loadSights(url) { //damit man es laden kann muss man eine Funktion definieren
+    const sehenswuerdigkeitenclusterGruppe = L.markerClusterGroup(); //erzeugen von featureGroup -- markerClusterGroup ist so definiert und kann nicht geändert werden
+    const response = await fetch(url); //innerhalb der asynchronen funktion abwarten bis das fetch fertig ist
+    const sightsData = await response.json(); //in json umwandeln
+    const geoJson = L.geoJson(sightsData, { //Wert der GeoJson Varibale wird in einer KOnstante gespeichert jetzt
+        pointToLayer: makeMarker //wie wird der Punkt in einen Layer umgewandelt? //Funktionsname
+    });
+    sehenswuerdigkeitenclusterGruppe.addLayer(geoJson); //fühe GeoJson zu ClusterGruppe
+    karte.addLayer(sehenswuerdigkeitenclusterGruppe);
+    layerControl.addOverlay(sehenswuerdigkeitenclusterGruppe, "Sehenswürdigkeiten")
 
 
-        const suchFeld = new L.Control.Search({
-            layer: sehenswuerdigkeitenclusterGruppe,
-            propertyName: "NAME",
-            zoom: 17,
-            initial: false,
-        });
-        karte.addControl(suchFeld);
-    }
+    const suchFeld = new L.Control.Search({
+        layer: sehenswuerdigkeitenclusterGruppe,
+        propertyName: "NAME",
+        zoom: 17,
+        initial: false,
+    });
+    karte.addControl(suchFeld);
+}
 
-    loadSights(url);
+loadSights(url);
 
 const scale = L.control.scale({
     imperial: true,
@@ -125,7 +125,8 @@ const scale = L.control.scale({
 karte.addControl(scale);
 
 const wege = 'https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SPAZIERLINIEOGD&srsName=EPSG:4326&outputFormat=json';
-function linienPopup(feature, layer){
+
+function linienPopup(feature, layer) {
     const popup = `
     <h3>${feature.properties.NAME}</h3>
     <p><a href="${feature.properties.WEITERE_INF}"Weblink</a></p>
@@ -137,12 +138,12 @@ async function loadWege(wege) {
     const antwort = await fetch(wege);
     const wegeData = await antwort.json();
     const wegeJson = L.geoJson(wegeData, {
-        style: function() {
+        style: function () {
             return {
                 color: "red"
             };
         },
-        onEachFeature: linienPopup  //variablenname
+        onEachFeature: linienPopup //variablenname
     });
     karte.addLayer(wegeJson);
     layerControl.addOverlay(wegeJson, "Spazierweg");

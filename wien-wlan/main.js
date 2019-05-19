@@ -92,7 +92,7 @@ function makeMarker(feature, latlng) { //Funktionsname
         icon: fotoicon //dann gebe ich dem Marker das Icon, sonst wäre er blau
     });
 
-    sightmarker.bindPopup(`
+    wlanmarker.bindPopup(`
  <h3>${feature.properties.NAME}</h3>  
  <p>${feature.properties.ADRESSE}</p>
  <hr>
@@ -102,22 +102,23 @@ function makeMarker(feature, latlng) { //Funktionsname
     return wlanmarker;
 }
 async function loadWlan(url) { //damit man es laden kann muss man eine Funktion definieren
-        const wlanclusterGruppe = L.markerClusterGroup(); //erzeugen von featureGroup -- markerClusterGroup ist so definiert und kann nicht geändert werden
-        const response = await fetch(url); //innerhalb der asynchronen funktion abwarten bis das fetch fertig ist
-        const wlanData = await response.json(); //in json umwandeln
-        const geoJson = L.geoJson(wlanData, { //Wert der GeoJson Varibale wird in einer KOnstante gespeichert jetzt
-            pointToLayer: makeMarker //wie wird der Punkt in einen Layer umgewandelt? //Funktionsname
-        });
-        wlanclusterGruppe.addLayer(geoJson);
-        karte.addLayer(wlanclusterGruppe);
-        layerControl.addOverlay(wlanclusterGruppe, "Wlan-Punkte")
+    const wlanclusterGruppe = L.markerClusterGroup(); //erzeugen von featureGroup -- markerClusterGroup ist so definiert und kann nicht geändert werden
+    const response = await fetch(url); //innerhalb der asynchronen funktion abwarten bis das fetch fertig ist
+    const wlanData = await response.json(); //in json umwandeln
+    const geoJson = L.geoJson(wlanData, { //Wert der GeoJson Varibale wird in einer KOnstante gespeichert jetzt
+        pointToLayer: makeMarker //wie wird der Punkt in einen Layer umgewandelt? //Funktionsname
+    });
+    wlanclusterGruppe.addLayer(geoJson);
+    karte.addLayer(wlanclusterGruppe);
+    layerControl.addOverlay(wlanclusterGruppe, "Wlan-Punkte")
 
-            const suchFeld = new L.Control.Search({
-                layer: wlanclusterGruppe,
-                propertyName: "NAME",
-                zoom: 17,
-                initials: false,
-            }); karte.addControl(suchFeld);
-        }
+    const suchFeld = new L.Control.Search({
+        layer: wlanclusterGruppe,
+        propertyName: "NAME",
+        zoom: 17,
+        initials: false,
+    });
+    karte.addControl(suchFeld);
+}
 
-        loadWlan(url);
+loadWlan(url);
