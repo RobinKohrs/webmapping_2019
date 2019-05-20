@@ -81,13 +81,14 @@ new L.Control.MiniMap(
 
 // die Implementierung der Karte startet hier
 
-const url = `https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:WLANWIENATOGD&srsName=EPSG:4326&outputFormat=json`
+const url = 'https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:WLANWIENATOGD&srsName=EPSG:4326&outputFormat=json'
 
 function makeMarker(feature, latlng) { //Funktionsname 
     const fotoicon = L.icon({ //icon erzeugen --> wo liegt das Bild und wie groß?
         iconUrl: 'http://www.data.wien.gv.at/icons/wlanwienatogd.png',
         iconSize: [36, 36]
     });
+
     const wlanmarker = L.marker(latlng, { //Marker erzeugen und Position
         icon: fotoicon //dann gebe ich dem Marker das Icon, sonst wäre er blau
     });
@@ -95,12 +96,11 @@ function makeMarker(feature, latlng) { //Funktionsname
     wlanmarker.bindPopup(`
  <h3>${feature.properties.NAME}</h3>  
  <p>${feature.properties.ADRESSE}</p>
- <hr>
- <footer><a href="${feature.properties.ANBIETER}" target="_blan">Anbieter</a></footer>
- `);
+ `)
 
     return wlanmarker;
 }
+
 async function loadWlan(url) { //damit man es laden kann muss man eine Funktion definieren
     const wlanclusterGruppe = L.markerClusterGroup(); //erzeugen von featureGroup -- markerClusterGroup ist so definiert und kann nicht geändert werden
     const response = await fetch(url); //innerhalb der asynchronen funktion abwarten bis das fetch fertig ist
