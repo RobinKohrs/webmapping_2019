@@ -72,7 +72,7 @@ karte.setView([48.208333, 16.373056], 12);
 // https://github.com/Norkart/Leaflet-MiniMap
 new L.Control.MiniMap(
     L.tileLayer("https://{s}.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png", {
-        subdomains: ["maps", "maps1", "maps2", "maps3", "maps4"],
+        subdomains: ["maps", "maps1", "maps2", "maps3", "maps4"], //subdomains für untetscheidliche Server und bezieht sich auf s
     }), {
         zoomLevelOffset: -4,
         toggleDisplay: true
