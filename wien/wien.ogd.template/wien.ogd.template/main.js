@@ -118,6 +118,7 @@ async function loadSights(url) { //damit man es laden kann muss man eine Funktio
 
 loadSights(url);
 
+
 const scale = L.control.scale({
     imperial: true,
     metric: true

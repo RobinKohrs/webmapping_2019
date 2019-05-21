@@ -81,9 +81,9 @@ new L.Control.MiniMap(
 
 // die Implementierung der Karte startet hier
 
-const url = 'https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:WLANWIENATOGD&srsName=EPSG:4326&outputFormat=json'
+const urlsight = 'https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:WLANWIENATOGD&srsName=EPSG:4326&outputFormat=json'
 
-function makeMarker(feature, latlng) { //Funktionsname 
+function makewlanMarker(feature, latlng) { //Funktionsname 
     const fotoicon = L.icon({ //icon erzeugen --> wo liegt das Bild und wie groß?
         iconUrl: 'http://www.data.wien.gv.at/icons/wlanwienatogd.png',
         iconSize: [36, 36]
@@ -102,12 +102,12 @@ function makeMarker(feature, latlng) { //Funktionsname
     return wlanmarker;
 }
 
-async function loadWlan(url) { //damit man es laden kann muss man eine Funktion definieren
+async function loadWlan(urlsight) { //damit man es laden kann muss man eine Funktion definieren
     const wlanclusterGruppe = L.markerClusterGroup(); //erzeugen von featureGroup -- markerClusterGroup ist so definiert und kann nicht geändert werden
-    const response = await fetch(url); //innerhalb der asynchronen funktion abwarten bis das fetch fertig ist
+    const response = await fetch(urlsight); //innerhalb der asynchronen funktion abwarten bis das fetch fertig ist
     const wlanData = await response.json(); //in json umwandeln
     const geoJson = L.geoJson(wlanData, { //Wert der GeoJson Varibale wird in einer KOnstante gespeichert jetzt
-        pointToLayer: makeMarker //wie wird der Punkt in einen Layer umgewandelt? //Funktionsname
+        pointToLayer: makewlanMarker //wie wird der Punkt in einen Layer umgewandelt? //Funktionsname
     });
     wlanclusterGruppe.addLayer(geoJson);
     karte.addLayer(wlanclusterGruppe);
@@ -122,4 +122,52 @@ async function loadWlan(url) { //damit man es laden kann muss man eine Funktion 
     karte.addControl(suchFeld);
 }
 
-loadWlan(url);
+loadWlan(urlsight);
+
+const url = 'https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SPAZIERPUNKTOGD &srsName=EPSG:4326&outputFormat=json';
+
+
+
+function makeMarker(feature, latlng) { //Funktionsname 
+    const fotoicon = L.icon({ //icon erzeugen --> wo liegt das Bild und wie groß?
+        iconUrl: 'http://www.data.wien.gv.at/icons/sehenswuerdigogd.png',
+        iconSize: [36, 36]
+    });
+
+    const sightmarker = L.marker(latlng, { //Marker erzeugen und Position
+        icon: fotoicon //dann gebe ich dem Marker das Icon, sonst wäre er blau
+    });
+
+    sightmarker.bindPopup(`
+ <h3>${feature.properties.NAME}</h3>  
+ <p>${feature.properties.BEMERKUNG}</p>
+ <hr>
+ <footer><a href="${feature.properties.WEITERE_INF}" target="_blan">Weblink</a></footer>
+ `);
+
+    return sightmarker; //funktion gibt Marker zurück
+}
+
+
+async function loadSights(url) { //damit man es laden kann muss man eine Funktion definieren
+    const sehenswuerdigkeitenclusterGruppe = L.markerClusterGroup(); //erzeugen von featureGroup -- markerClusterGroup ist so definiert und kann nicht geändert werden
+    const response = await fetch(url); //innerhalb der asynchronen funktion abwarten bis das fetch fertig ist
+    const sightsData = await response.json(); //in json umwandeln
+    const geoJson = L.geoJson(sightsData, { //Wert der GeoJson Varibale wird in einer KOnstante gespeichert jetzt
+        pointToLayer: makeMarker //wie wird der Punkt in einen Layer umgewandelt? //Funktionsname
+    });
+    sehenswuerdigkeitenclusterGruppe.addLayer(geoJson); //fühe GeoJson zu ClusterGruppe
+    karte.addLayer(sehenswuerdigkeitenclusterGruppe);
+    layerControl.addOverlay(sehenswuerdigkeitenclusterGruppe, "Sehenswürdigkeiten")
+
+
+    const suchFeld = new L.Control.Search({
+        layer: sehenswuerdigkeitenclusterGruppe,
+        propertyName: "NAME",
+        zoom: 17,
+        initial: false,
+    });
+    karte.addControl(suchFeld);
+}
+
+loadSights(url);
