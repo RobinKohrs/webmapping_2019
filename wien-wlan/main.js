@@ -94,8 +94,9 @@ function makeMarker(feature, latlng) { //Funktionsname
     });
 
     wlanmarker.bindPopup(`
- <h3>${feature.properties.NAME}</h3>  
- <p>${feature.properties.ADRESSE}</p>
+ <h3>${feature.properties.NAME}</h3> 
+<h4>${feature.properties.ADRESSE}</h4>
+<footer><a href="${feature.properties.WEITERE_INFORMATIONEN}" target="_blan">Weitere Informationen</a></footer>
  `)
 
     return wlanmarker;
@@ -116,7 +117,7 @@ async function loadWlan(url) { //damit man es laden kann muss man eine Funktion 
         layer: wlanclusterGruppe,
         propertyName: "NAME",
         zoom: 17,
-        initials: false,
+        initial: false,
     });
     karte.addControl(suchFeld);
 }
