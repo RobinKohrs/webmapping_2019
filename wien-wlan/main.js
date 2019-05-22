@@ -63,9 +63,75 @@ const layerControl = L.control.layers({
     "Stamen Watercolor": kartenLayer.stamen_watercolor
 }).addTo(karte);
 
+
 kartenLayer.bmapgrau.addTo(karte);
 
 karte.addControl(new L.Control.Fullscreen());
+//
+// Wikipedia Artikel laden
+//
+
+//http://api.geonames.org/wikipediaBoundingBoxJSON?formatted=true&north=44.1&south=-9.9&east=-22.4&west=55.2&username=webmapping&style=full
+
+
+const wikipediaGruppe = L.featureGroup().addTo(karte)
+layerControl.addOverlay(wikipediaGruppe, "Wikipediaartikel")
+
+
+//Funktion selber definieren
+async function wikipediaArtikelLaden(url) { //dieses url könnte  auch link sein
+    wikipediaGruppe.clearLayers(); //
+    //console.log("lade", url);
+
+
+    const antwort = await fetch(url);
+    const jsonDaten = await antwort.json();
+
+    //console.log(jsonDaten);
+    for (let artikel of jsonDaten.geonames) { //geonames ist ein key-value-pair aus der json datei
+        const wikipediaMarker = L.marker([artikel.lat, artikel.lng], {
+            icon: L.icon({
+                iconUrl: "icons/wiki.svg",
+                iconsize: [22, 22]
+
+            })
+
+        }).addTo(wikipediaGruppe);
+
+        wikipediaMarker.bindPopup(
+            `<h3>${artikel.title}</h3>
+            <p>${artikel.summary}</p>
+            <hr>
+            <footer><a target= "_blank" href="https://${artikel.wikipediaUrl}">Weblink</a></footer>`
+        );
+
+    }
+}
+
+let letzteGeonamesUrl = null;
+
+
+karte.on("load zoomend moveend", function () {
+    console.log("karte geladen", karte.getBounds());
+
+    let ausschnitt = { //javascript Objekt
+        n: karte.getBounds().getNorth(),
+        s: karte.getBounds().getSouth(),
+        e: karte.getBounds().getEast(),
+        w: karte.getBounds().getWest(),
+    }
+    //console.log(ausschnitt)
+    const geonamesUrl = `http://api.geonames.org/wikipediaBoundingBoxJSON?formatted=true&north=${ausschnitt.n}&south=${ausschnitt.s}&east=${ausschnitt.e}&west=${ausschnitt.w}&username=webmapping&style=full&maxRows=5&lang=de`;
+    //console.log(geonamesUrl);
+
+if (geonamesUrl != letzteGeonamesUrl){
+    wikipediaArtikelLaden(geonamesUrl); 
+    letzteGeonamesUrl = geonamesUrl;
+}
+    //JSon Artikel laden und Funktion aufrufen (wikipediaartikelladen)
+    wikipediaArtikelLaden(geonamesUrl);
+});
+
 
 karte.setView([48.208333, 16.373056], 12);
 
