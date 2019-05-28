@@ -121,7 +121,7 @@ footer {
 
 @media only screen and (max-width: 900px) {
 
-    /* wenn der buldschirm schmaler als 900px ist, dann springt die Caption über das Bild*/
+    /* wenn der bildschirm schmaler als 900px ist, dann springt die Caption über das Bild*/
     main figure figcaption {
         float: none;
         margin-left: 0;
@@ -130,6 +130,6 @@ footer {
 }
 
 #elevation-div {
-    width: 90%,
-    height: 200px,
+    width: 90%;
+    height: 200px;
 }

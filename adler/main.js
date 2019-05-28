@@ -103,6 +103,7 @@ L.control.layers({
   "vogis": kartenlayer.vogis,
 }).addTo(karte);
 
+kartenlayer.bmapgrau.addTo(karte);
 
 
 
@@ -144,20 +145,63 @@ karte.on('click', function (e) {
   coords.setCoordinates(e);
 });
 
-new L.GPX("AdlerwegEtappe04.gpx", {
+new L.GPX("AdlerwegEtappe04.gpx", { //datei adlerwegEtappe04.gpx soll geladen werden
   async: true,
   marker_options: {
     startIconUrl: 'images/pin-icon-start.png',
     endIconUrl: 'images/pin-icon-end.png',
-    shadowUrl: 'images/pin-shadow.png'
+    shadowUrl: 'images/pin-shadow.png',
   }
-}).on('loaded', function (e) {
+}).on('loaded', function (e) { //loaded-event wird getriggert
   karte.fitBounds(e.target.getBounds());
-}).on('addline', function (e) {
-  console.log('linie geladen');
+  const statsDiv = document.getElementById("stats"); //document holt das elemnt aus dem html-code was die id stats hat
+  const minheight = e.target.get_elevation_min(); //Variablen definieren
+  const maxheight = e.target.get_elevation_max();
+  const verticalMeters = e.target.get_elevation_gain();
+  statsDiv.innerHTML = `Routen Statistik: niedrigster Punkt: ${minheight} m, höchster Punkt: ${maxheight} m, Höhenunterschied: ${verticalMeters} m`;
+}).on('addline', function (e) { //add-line Event
+  //console.log('linie geladen');
   const controlElevation = L.control.elevation({
-    detachedView: true,
-    elevationDiv: "#elevation-div",
-  }).addTo(karte);
-  controlElevation.addData(e.line)
-}).addTo(karte);
+    //position: 'bottomright',
+    //collapsed: true,
+    detachedView: true, //außerhalb der Karte --> detached
+    elevationDiv: "#elevation-div", //deswegen neue div
+  });
+  controlElevation.addTo(karte);
+  controlElevation.addData(e.line);
+  const gpxLinie = e.line.getLatLngs();
+  for (let i = 1; i < gpxLinie.length; i += 1) {
+    console.log(gpxLinie[i]);
+    let p1 = gpxLinie[i - 1];
+    let p2 = gpxLinie[i];
+    let dist = karte.distance(
+      [p1.lat, p2.lng],
+      [p2.lat, p2.lng]
+    );
+
+    let delta = (p2.meta.ele - p1.meta.ele); //Höhenunterschied ausrechnen, 2.Punkt - 1. Punkt
+    let proz = (dist != 0 ? delta / dist * 100.0 : 0).toFixed(1);
+
+    console.log('Distanz: ', dist, 'Höhendiff', delta);
+    let farbe =
+      proz >= 10 ? "#d73027" :
+      proz >= 6 ? "#fc8d59" :
+      proz >= 2 ? "#fee08b" :
+      proz >= 0 ? "#ffffbf" :
+      proz >= -6 ? "#d9ef8b" :
+      proz >= 10 ? "#91cf60" :
+      "#1a9850";
+
+    let segment = L.polyline(
+      [
+        [p1.lat, p1.lng],
+        [p2.lat, p2.lng]
+      ], {
+        color: farbe,
+      }
+    ).addTo(karte);
+
+
+  }
+
+})

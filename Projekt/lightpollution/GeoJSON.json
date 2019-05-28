@@ -1,0 +1,38 @@
+{
+	"type": "FeatureCollection",
+	"totalFeatures": 2,
+	"features": [{
+			"type": "Feature",
+			"id": "point_1",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [5.94647769, 50.82544414]
+			},
+			"geometry_name": "geom",
+			"properties": {
+				"gid": 1,
+				"name": "data 1",
+				"sqm": 20.38
+			}
+		}, {
+			"type": "Feature",
+			"id": "point_2",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [-119.81587983, 38.89549055]
+			},
+			"geometry_name": "geom",
+			"properties": {
+				"gid": 2,
+				"name": "data 2",
+				"sqm": 21.43
+			}
+		}
+	],
+	"crs": {
+		"type": "name",
+		"properties": {
+			"name": "urn:ogc:def:crs:EPSG::4326"
+		}
+	}
+}
