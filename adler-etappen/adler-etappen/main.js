@@ -90,6 +90,12 @@ for (let i = 0; i < ETAPPEN.length; i++) {
     pulldown.innerHTML += `<option value="${i}">${ETAPPEN[i].titel}</option>`
 }
 
+
+let gpxGruppe = L.featureGroup().addTo(karte);
+layerControl.addOverlay(gpxGruppe, "GPX-Track");
+
+let controlElevation = null;
+
 function etappeErzeugen(nummer) {
     let daten = ETAPPEN[nummer];
     //let titelText = daten.titel;
@@ -98,21 +104,46 @@ function etappeErzeugen(nummer) {
 
     document.getElementById("daten_titel").innerHTML = daten.titel;
     document.getElementById("daten_info").innerHTML = daten.info;
+    document.getElementById("daten_strecke").innerHTML = daten.strecke;
+
     //console.log(daten);
 
     //GPX TRACKS LADEN
     console.log(daten.gpsid);
-    daten.gpsid = daten.gpsid.replace("A","");
+    daten.gpsid = daten.gpsid.replace("A", "");
 
-    const gpxTrack = new L.GPX(`gpx\AdlerwegEtappe${daten.gpsid}.gpx`, {
-        async : true,
-        marker_options : {
-            startIconUrl : 'icons/pin-icon-start.png',
-            endIconUrl : 'icons/pin-icon-end.png',
-            shadowUrl : 'icons/pin-shadow.png',
-            iconSize: [32,37]
+    gpxGruppe.clearLayers();
+    const gpxTrack = new L.GPX(`gpx/AdlerwegEtappe${daten.gpsid}.gpx`, {
+        async: true,
+        marker_options: {
+            startIconUrl: 'icons/pin-icon-start.png',
+            endIconUrl: 'icons/pin-icon-end.png',
+            shadowUrl: 'icons/pin-shadow.png',
+            iconSize: [32, 37]
         }
-    }).addTo(karte); 
+    }).addTo(gpxGruppe);
+
+    gpxTrack.on("laoded", function () {
+        // karte.fitBounds(gpxTrack.getBounds());
+    });
+
+    gpxTrack.on("addline", function (evt) {
+        //bestehendes Profil löschen
+        if (controlElevation) {
+            controlElevation.clear();
+            document.getElementById("elevation-div").innerHTML = "";
+        }
+        //Höhenprofil erzeugen
+
+        controlElevation = L.control.elevation({
+            theme: "steelblue-theme",
+            detachedView: true,
+            elevationDIV: "#elevation-div"
+        })
+        controlElevation.addTo(karte);
+        controlElevation.addData(evt.line);
+    })
+
 }
 etappeErzeugen(0);
 
@@ -122,3 +153,21 @@ pulldown.onchange = function (evt) { //pulldown=element im html
     console.log(opts[opts.selectedIndex].text);
     etappeErzeugen(opts[opts.selectedIndex].value);
 }
+
+L.Routing.control({}).addTo(karte);
+
+const routingMachine = L.Routing.control({}).addTo(karte);
+let start, end;
+karte.on("click", function (ev) { //bei KLick auf die Karte Koordinaten
+    console.log("clicked: ", ev.latlng);
+    if (!start) {
+        start = ev.latlng;
+    } else {
+        end = ev.latlng;
+        routingMachine.setWaypoints([start, end]);
+        routingMachine.route();
+        start = null;
+    }
+    console.log("Start: ", start, "End: ", end)
+
+})
