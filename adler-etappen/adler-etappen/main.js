@@ -81,3 +81,44 @@ new L.Control.MiniMap(
 ).addTo(karte);
 
 // die Implementierung der Karte startet hier
+
+
+
+let pulldown = document.getElementById("etappenPulldown")
+for (let i = 0; i < ETAPPEN.length; i++) {
+    //console.log(ETAPPEN [i]) //um zu sehen, was drin steht
+    pulldown.innerHTML += `<option value="${i}">${ETAPPEN[i].titel}</option>`
+}
+
+function etappeErzeugen(nummer) {
+    let daten = ETAPPEN[nummer];
+    //let titelText = daten.titel;
+    //let titelElement = document.getElementById("data_titel");
+    //titelElement.innerHTML = titelText;
+
+    document.getElementById("daten_titel").innerHTML = daten.titel;
+    document.getElementById("daten_info").innerHTML = daten.info;
+    //console.log(daten);
+
+    //GPX TRACKS LADEN
+    console.log(daten.gpsid);
+    daten.gpsid = daten.gpsid.replace("A","");
+
+    const gpxTrack = new L.GPX(`gpx\AdlerwegEtappe${daten.gpsid}.gpx`, {
+        async : true,
+        marker_options : {
+            startIconUrl : 'icons/pin-icon-start.png',
+            endIconUrl : 'icons/pin-icon-end.png',
+            shadowUrl : 'icons/pin-shadow.png',
+            iconSize: [32,37]
+        }
+    }).addTo(karte); 
+}
+etappeErzeugen(0);
+
+pulldown.onchange = function (evt) { //pulldown=element im html 
+    let opts = evt.target.options
+    console.log(opts[opts.selectedIndex].value);
+    console.log(opts[opts.selectedIndex].text);
+    etappeErzeugen(opts[opts.selectedIndex].value);
+}
