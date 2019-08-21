@@ -1,58 +1,56 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Land Use Change</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <link rel="stylesheet" href="main.css">
-
-        <script defer src="main.js"></script>
-        
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-        <div class="header" id="myHeader">
-            <div class="inner_header">
-                <div class="logo_container">
-                    <h1> <span>Lichtverschmutzung in Tirol</span></h1>
-                </div>
-    
-                <ul class="navigation">
-                    <a href="sinop.html">
-                        <li> Home</li>
-                    </a>
-                    <a href="sorriso.html">
-                        <li> Luft</li>
-                    </a>
-                    <a href="verde.html">
-                        <li> Licht</li>
-    
-                </ul>
-                <br>
-    
-    
-            </div>
-    
-        </div>
-
-
-        <div class="video">
-            <iframe class="video-iframe" src="https://explorables.cmucreatelab.org/timemachine-viewer/examples/landsat.html#tour=DCCmCA7J2Xhu_S5kBSinop%0A%0A_BkDB7J2Xhu_S5kB1985%0A_Sinop_B&ignoreThumbnailUrlList=1"></iframe>
-
-            <div class="video-play">
-              <i class="video-play-icon fa fa-youtube-play"></i>
-            </div>
-          </div>
-
-
-    </body>
+<!doctype html>
+<html>
+  <head>
+    <title>iframe Play Button</title>
+    <style>
+      @import "https://cdn.rawgit.com/mattborn/a9ceb96ad80f586cf40145276f98b86c/raw/713948588a471f22349744ff76d899fedbdb1577/bambu.css";
+      iframe {
+        border: none;
+        max-width: 100%;
+      }
+      .video {
+        height: 0;
+        padding: 0 0 56.25%; /* 16:9 */
+        position: relative;
+      }
+      .video-iframe,
+      .video-play {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+      .video-play {
+        align-items: center;
+        color: white;
+        cursor: pointer;
+        font-size: 100px;
+        display: flex;
+        justify-content: center;
+        pointer-events: none;
+      }
+      .video:hover .video-play { color: #11a7aa; }
+    </style>
+  </head>
+  <body>
+    <div class="video">
+      <iframe class="video-iframe" src="https://www.facebook.com/video/embed?video_id=10154064015005318"></iframe>
+      <div class="video-play">
+        <i class="video-play-icon fa fa-youtube-play"></i>
+      </div>
+    </div>
+    <script>
+      focus();
+      document.querySelectorAll('.video').forEach(function (el) {
+        const listener = addEventListener('blur', function () {
+          const play = el.querySelector('.video-play');
+          if (play && document.activeElement === el.querySelector('.video-iframe')) {
+            el.removeChild(play);
+          }
+          removeEventListener('blur', listener);
+        });
+      });
+    </script>
+  </body>
 </html>
