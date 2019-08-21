@@ -9,7 +9,11 @@
         <title>Land Use Change</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <link rel="stylesheet" href="main.css">
+
+        <script defer src="main.js"></script>
+        
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -40,61 +44,15 @@
     
         </div>
 
-<!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-    <iframe id="video1" width="854" height="583" src="https://explorables.cmucreatelab.org/timemachine-viewer/examples/landsat.html#tour=DCCmCA7J2Xhu_S5kBSinop%0A%0A_BkDB7J2Xhu_S5kB1985%0A_Sinop_B&ignoreThumbnailUrlList=1" frameborder="0" allowtransparency="true" allowfullscreen></iframe>
-    <a href="#" id="playvideo">Play video</a>
 
-    <!-- The Play-Link will appear in that div after the video was loaded -->
-    <div id="play"></div>
+        <div class="video">
+            <iframe class="video-iframe" src="https://explorables.cmucreatelab.org/timemachine-viewer/examples/landsat.html#tour=DCCmCA7J2Xhu_S5kBSinop%0A%0A_BkDB7J2Xhu_S5kB1985%0A_Sinop_B&ignoreThumbnailUrlList=1"></iframe>
 
-    <script>
-      // 2. This code loads the IFrame Player API code asynchronously.
-      var tag = document.createElement('script');
+            <div class="video-play">
+              <i class="video-play-icon fa fa-youtube-play"></i>
+            </div>
+          </div>
 
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-      // 3. This function creates an <iframe> (and YouTube player)
-      //    after the API code downloads.
-      var player;
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-          height: '390',
-          width: '640',
-          videoId: 'M7lc1UVf-VE',
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-      }
-
-      // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-        //event.target.playVideo();
-        document.getElementById('play').innerHTML = '<a href="#" onclick="play();">Play Video</a>';
-      }
-
-      function play(){
-        player.playVideo();
-      }
-
-      // 5. The API calls this function when the player's state changes.
-      //    The function indicates that when playing a video (state=1),
-      //    the player should play for six seconds and then stop.
-      var done = false;
-      function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING && !done) {
-          setTimeout(stopVideo, 6000);
-          done = true;
-        }
-      }
-      function stopVideo() {
-        player.stopVideo();
-      }
-    </script>
-  </body>
-</html>
     </body>
 </html>

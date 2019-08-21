@@ -76,3 +76,31 @@
     color: green;
     text-decoration: none;
 }
+
+iframe {
+    border: none;
+    max-width: 100%;
+  }
+  .video {
+    height: 0;
+    padding: 0 0 56.25%; /* 16:9 */
+    position: relative;
+  }
+  .video-iframe,
+  .video-play {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  .video-play {
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .video:hover .video-play { color: #11a7aa; }
